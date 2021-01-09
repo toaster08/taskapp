@@ -19,12 +19,28 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="TOz-ZX-0mZ">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="aAr-Yu-8BU" detailTextLabel="x2l-f5-gV7" style="IBUITableViewCellStyleSubtitle" id="TOz-ZX-0mZ">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TOz-ZX-0mZ" id="mry-83-gUT">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aAr-Yu-8BU">
+                                                    <rect key="frame" x="20" y="10" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x2l-f5-gV7">
+                                                    <rect key="frame" x="20" y="31.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -47,7 +63,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableVIew" destination="pg1-yc-cb9" id="9Ty-Py-Czn"/>
+                        <outlet property="tableView" destination="pg1-yc-cb9" id="DXB-WH-ldK"/>
                         <segue destination="3ar-9y-mJR" kind="show" identifier="cellSegue" id="egp-2N-0dP"/>
                     </connections>
                 </viewController>
@@ -121,7 +137,7 @@
                     <navigationItem key="navigationItem" id="ARh-U0-hsk"/>
                     <connections>
                         <outlet property="contentsTextView" destination="k0n-zu-nma" id="KtE-uE-TVP"/>
-                        <outlet property="dataPicker" destination="bn2-xh-dEa" id="6u6-KY-NIk"/>
+                        <outlet property="datePicker" destination="bn2-xh-dEa" id="cz2-Iw-uh8"/>
                         <outlet property="titleTextField" destination="PBa-D4-wKv" id="TxH-WS-V5u"/>
                     </connections>
                 </viewController>
@@ -149,6 +165,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="egp-2N-0dP"/>
+        <segue reference="dfw-Tr-6CW"/>
     </inferredMetricsTieBreakers>
 </document>
