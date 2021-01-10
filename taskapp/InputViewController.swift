@@ -15,7 +15,6 @@ class InputViewController: UIViewController {
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var categoryTextField: UITextField!
-    @IBOutlet weak var scvBackGround: UIScrollView!
     
     let realm = try! Realm()
     var task: Task!
@@ -41,7 +40,8 @@ class InputViewController: UIViewController {
             self.task.category = self.categoryTextField.text!
             self.realm.add(self.task, update: .modified)
         }
-
+        
+        setNotification(task: task)
         super.viewWillDisappear(animated)
     }
 
@@ -63,11 +63,14 @@ class InputViewController: UIViewController {
         } else {
             content.body = task.contents
         }
-        if task.category == "" {
-            content.subtitle = "(カテゴリーなし)"
-        } else {
-            content.subtitle = task.category
-        }
+        
+//      カテゴリーをタスク一覧で表示する方法
+//        if task.category == "" {
+//            content.subtitle = "(カテゴリーなし)"
+//        } else {
+//            content.subtitle = task.category
+//        }
+        
         content.sound = UNNotificationSound.default
 
         // ローカル通知が発動するtrigger（日付マッチ）を作成
