@@ -20,9 +20,14 @@ class Task: Object {
 
     // 日時
     @objc dynamic var date = Date()
+    
+    // カテゴリー 学習のために型を明示
+    @objc dynamic var category:String = ""
 
     // id をプライマリーキーとして設定
     override static func primaryKey() -> String? {
         return "id"
     }
+    
+
 }

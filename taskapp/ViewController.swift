@@ -10,12 +10,12 @@ import UIKit
 import RealmSwift
 import UserNotifications
 
-class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate{
 
     @IBOutlet weak var tableView: UITableView!
     
     // Realmインスタンスを取得する
-    let realm = try! Realm()  // ←追加
+    let realm = try! Realm()
 
     // DB内のタスクが格納されるリスト。
     // 日付の近い順でソート：昇順
@@ -28,6 +28,8 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        search.delegate = self
+
     }
      // データの数（＝セルの数）を返すメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,7 +41,6 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         // 再利用可能な cell を得る
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        // Cellに値を設定する.  --- ここから ---
         let task = taskArray[indexPath.row]
         cell.textLabel?.text = task.title
 
@@ -48,7 +49,6 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
 
         let dateString:String = formatter.string(from: task.date)
         cell.detailTextLabel?.text = dateString
-        // --- ここまで追加 ---
         
         return cell
     }
@@ -113,6 +113,26 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
+    
+    @IBOutlet weak var search: UISearchBar!
+    
+    //  検索バーに入力があったら呼ばれる
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+        let realm = try! Realm()
+        
+        guard !searchText.isEmpty else {
+            self.taskArray = realm.objects(Task.self).sorted(byKeyPath: "date", ascending: true)
+            tableView.reloadData()
+            return
+        }
+        
+        self.taskArray = realm.objects(Task.self).filter("category CONTAINS %@",searchText)
+        
+        tableView.reloadData()
+    }
+    
+
 
 }
 

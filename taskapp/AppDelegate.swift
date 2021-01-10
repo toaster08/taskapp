@@ -7,15 +7,28 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate  {
+class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate,UISearchBarDelegate{
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let center = UNUserNotificationCenter.current()
            center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
                // Enable or disable features based on authorization
+           
+//      migration　realm利用時の変更に関してはmigrationの変更が必要
+//        var config = Realm.Configuration(
+//        schemaVersion: 1,
+//        migrationBlock: { migration, oldSchemaVersion in
+//            if (oldSchemaVersion<1) {}
+//        })
+//
+//        Realm.Configuration.defaultConfiguration = config
+//            _ = try! Realm()
+//        config.deleteRealmIfMigrationNeeded = true
+            
         }
         
         center.delegate = self
@@ -40,6 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .sound])
     }
+    
+    
 
 }
 
